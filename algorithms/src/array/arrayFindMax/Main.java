@@ -20,7 +20,7 @@ public class Main {
         int times = 0;
         for(int j=0; j<9; j++){
             times += 1;
-            if_(arr[j] == max){
+            if(arr[j] == max){
                 break;
             }
         }

@@ -12,10 +12,10 @@ public class Main {
         char[] secondNum = initArr[1].toCharArray();
         // compare
         for(int i=2; i>=0; i--){
-            if_(firstNum[i] > secondNum[i]){
+            if(firstNum[i] > secondNum[i]){
                 bw.write(""+firstNum[2]+firstNum[1]+firstNum[0]);
                 break;
-            }else if_(firstNum[i] < secondNum[i]){
+            }else if(firstNum[i] < secondNum[i]){
                 bw.write(""+secondNum[2]+secondNum[1]+secondNum[0]);
                 break;
             }else{

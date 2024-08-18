@@ -31,7 +31,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for(int k=0; k<arr.length; k++){
             sb.append(arr[k]);
-            if_(k != arr.length-1){
+            if(k != arr.length-1){
                 sb.append(" ");
             }
         }
@@ -42,7 +42,7 @@ public class Main {
 
     private void reverseArray(int[] array, int start, int end) {
         // condition to end
-        if_ (start >= end) {
+        if(start >= end) {
             return;
         }
         // exchange between first and last

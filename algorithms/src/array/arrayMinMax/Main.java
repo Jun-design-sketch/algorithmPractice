@@ -13,7 +13,7 @@ public class Main {
         String secondStr[] = br.readLine().split(" ");
         OptionalInt min = Arrays.stream(secondStr).mapToInt(Integer::parseInt).reduce((a, b) -> a<b ? a:b);
         OptionalInt max = Arrays.stream(secondStr).mapToInt(Integer::parseInt).reduce((a, b) -> a>b ? a:b);
-        if_(min.isPresent() && max.isPresent()){
+        if(min.isPresent() && max.isPresent()){
             bw.write(""+min.getAsInt()+" "+max.getAsInt());
         }
         bw.flush();

@@ -25,7 +25,7 @@ public class Main {
         for(int i=0; i<answer.length; i++){
             sb.append(answer[i]);
             // do not calculate.add " " after final el
-            if_(i != answer.length-1){
+            if(i != answer.length-1){
                 sb.append(" ");
             }
         }

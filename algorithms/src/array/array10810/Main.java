@@ -23,7 +23,7 @@ public class Main {
             // input ball has written number: k
             int k = Integer.parseInt(eachLi[2]);
             // input process
-            if_(i == j){
+            if(i == j){
                 // input ball written 'k', only position i-1
                 arr[i-1] = k;
             }else{
@@ -38,7 +38,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for(int x=0; x<arr.length; x++){
             sb.append(arr[x]);
-            if_(x < arr.length-1){
+            if(x < arr.length-1){
                 sb.append(" ");
             }
         }

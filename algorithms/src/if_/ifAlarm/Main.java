@@ -11,12 +11,12 @@ public class Main {
         int m = Integer.parseInt(str[1]);
         // caution: 00:00(x) 0:0(o). do not write unnecessary 0
         // get 45minutes earlier hour/minutes
-        if_(m > 45){
+        if(m > 45){
             m -= 45;
-        }else if_(m == 45){
+        }else if(m == 45){
             m = 0;
         }else{
-            if_(h > 0){
+            if(h > 0){
                 h -= 1;
             }else{
                 h = 23;

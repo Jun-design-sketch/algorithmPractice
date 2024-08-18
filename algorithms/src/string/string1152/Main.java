@@ -8,11 +8,11 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String[] strArr = br.readLine().split(" ");
         int count = strArr.length;
-        if_(count > 0){
-            if_(strArr[0] == ""){
+        if(count > 0){
+            if(strArr[0] == ""){
                 count -= 1;
             }
-            if_(strArr[strArr.length-1] == ""){
+            if(strArr[strArr.length-1] == ""){
                 count -= 1;
             }
         }

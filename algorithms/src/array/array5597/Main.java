@@ -26,7 +26,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for(int j=0; j<whoForgot.length; j++){
             sb.append(whoForgot[j]);
-            if_(j < whoForgot.length-1){
+            if(j < whoForgot.length-1){
                 sb.append(" ");
             }
         }

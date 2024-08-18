@@ -23,7 +23,7 @@ public class Main {
             int i = Integer.parseInt(eachLi[0]);
             int j = Integer.parseInt(eachLi[1]);
             //Note: 1<=i<=j<=n
-            if_(i != j){
+            if(i != j){
                 int keepVal = arr[j-1];
                 int keepVal2 = arr[i-1];
                 arr[i-1] = keepVal;
@@ -34,7 +34,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for(int x=0; x<arr.length; x++){
             sb.append(arr[x]);
-            if_(x < arr.length-1){
+            if(x < arr.length-1){
                 sb.append(" ");
             }
         }

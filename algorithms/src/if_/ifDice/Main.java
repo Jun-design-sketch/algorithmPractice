@@ -17,9 +17,9 @@ public class Main {
         Arrays.sort(numbers);
 
         int prizeResult;
-        if_(numbers[0] == numbers[2]){
+        if(numbers[0] == numbers[2]){
             prizeResult = ALL_MATCH_PRIZE + ALL_MATCH_MULTIPLE * numbers[0];
-        }else if_(numbers[0] != numbers[1] && numbers[1] != numbers[2]){
+        }else if(numbers[0] != numbers[1] && numbers[1] != numbers[2]){
             prizeResult = NOT_ALL_MATCH_MULTIPLE * numbers[2];
         }else{
             prizeResult = TWO_MATCH_PRIZE + NOT_ALL_MATCH_MULTIPLE * numbers[1];

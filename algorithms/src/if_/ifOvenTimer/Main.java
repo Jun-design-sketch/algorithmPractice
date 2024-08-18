@@ -19,17 +19,17 @@ public class Main {
         int endHour = 0;
         int endMin = 0;
 
-        if_(curMin + durMin < ALL_MIN){
+        if(curMin + durMin < ALL_MIN){
             endMin = curMin + durMin;
-        }else if_(curMin + durMin == ALL_MIN){
+        }else if(curMin + durMin == ALL_MIN){
             endHour += 1;
         }else{
             endHour += 1;
             endMin = (curMin + durMin) - ALL_MIN;
         }
-        if_(endHour + curHour + durHour < ALL_HOUR){
+        if(endHour + curHour + durHour < ALL_HOUR){
             endHour += curHour + durHour;
-        }else if_(endHour + curHour + durHour == ALL_HOUR){
+        }else if(endHour + curHour + durHour == ALL_HOUR){
             endHour = 0;
         }else{
             endHour = (endHour + curHour + durHour) % ALL_HOUR;

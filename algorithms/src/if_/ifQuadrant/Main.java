@@ -12,11 +12,11 @@ public class Main {
         // quadrant 3 : (-, -) quadrant 4: (+, -)
         boolean judgeX = x > 0 ? true : false;
         boolean judgeY = y > 0 ? true : false;
-        if_(judgeX && judgeY){
+        if(judgeX && judgeY){
             System.out.print(1);
-        }else if_(judgeY){
+        }else if(judgeY){
             System.out.print(2);
-        }else if_(judgeX){
+        }else if(judgeX){
             System.out.print(4);
         }else{
             System.out.print(3);

@@ -15,7 +15,7 @@ public class Main {
         while(true) {
             try {
                 str = br.readLine();
-                if_ (!str.equals("0 0")) {
+                if(!str.equals("0 0")) {
                     int[] arr = main.strToInt(str);
                     int answer = arr[0] + arr[1];
                     bw.write("" + answer + "\n");

@@ -7,8 +7,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int naturalNumber = sc.nextInt();
         int answer = 0;
-        if_(naturalNumber % 4 == 0){
-            if_(naturalNumber % 100 != 0 || naturalNumber % 400 == 0){
+        if(naturalNumber % 4 == 0){
+            if(naturalNumber % 100 != 0 || naturalNumber % 400 == 0){
                 answer = 1;
             }
         }

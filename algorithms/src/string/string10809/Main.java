@@ -15,7 +15,7 @@ public class Main {
         for(int i=ASCII_SMALL_A; i<=ASCII_SMALL_Z; i++){
             char ch = (char)i;
             bw.write(""+str.indexOf(ch));
-            if_(i != ASCII_SMALL_Z){
+            if(i != ASCII_SMALL_Z){
                 bw.write(" ");
             }
         }
