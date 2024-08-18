@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // make HashSet object
         Set<String> set = new HashSet<>();
-        // add element: set values
+        // calculate.add element: set values
         set.add("Apple");
         set.add("Banana");
         set.add("Orange");

@@ -29,7 +29,7 @@ public class Main {
         // hint: byte = '8bit' = 2^8 = 256
         // -128~127 = 256, 2^7 = 128. position of 2^8 = definition +/-
         // calculate mechanism
-        // 10000010 -> reverseAll -> 01111101 -> add 1 -> 01111110 -> 126
+        // 10000010 -> reverseAll -> 01111101 -> calculate.add 1 -> 01111110 -> 126
 
         // mechanism?
         // two's complement: easy to use minusValue

@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // HashMap
         Map<String, Integer> map = new HashMap<>();
-        // add key-value
+        // calculate.add key-value
         map.put("Apple", 1);
         map.put("Banana", 2);
         map.put("Orange", 3);
