@@ -1,4 +1,4 @@
-package split;
+package basic.split;
 
 import java.util.Scanner;
 

@@ -25,7 +25,7 @@ public class Main {
 //        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 //
 //        int firstInt = Integer.parseInt(br.readLine());
-//        String secondStr[] = br.readLine().split(" ");
+//        String secondStr[] = br.readLine().basic.split(" ");
 //        int[] intArr = new int[firstInt];
 //        for(int i=0; i < secondStr.length; i++){
 //            intArr[i] = Integer.parseInt(secondStr[i]);
