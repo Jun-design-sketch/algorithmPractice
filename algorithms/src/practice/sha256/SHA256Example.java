@@ -28,5 +28,15 @@ public class SHA256Example {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        // Hashは特定の数学論理で文字列を整形するけれど、決まった文字列からは決まったものしか出てこない。
+        // 結果RainbowTableといった整形後のものの集合体があれば、大体のものは分かってしまう
+        // 同じDigestが得られるまで、ハッシュ関数に無差別代入する？（時間はかかる）→　BruteForce
+
+        // なので、original->hashFunc->digest->hashFunc->digest
+        // 複数回回してしまうことでより安全にする → keyStretching
+
+        // また、ハッシュ関数稼働前に任意の文字列を加える。→ salt
+        // 各ユーザー毎のソルト、32bit以上にする。任意乱数生成で付与するなど
+
     }
 }
