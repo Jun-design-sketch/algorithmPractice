@@ -10,11 +10,25 @@ public class Main {
         Solution solution = new Solution();
         // solution.sol1();
         // solution.sol2();
-        solution.sol3();
+        // solution.sol3();
+        solution.sol4();
     }
 }
 
 class Solution {
+    // BigDecimalで小数点単位をceilingするので、条件文不要にできた
+    protected void sol4() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        br.close();
+        int dayClimb = Integer.parseInt(st.nextToken());
+        int nightDescend = Integer.parseInt(st.nextToken());
+        int height = Integer.parseInt(st.nextToken());
+        BigDecimal bottom = new BigDecimal(dayClimb-nightDescend); // nightDescend < dayClimb
+        BigDecimal top = new BigDecimal(height-dayClimb); // dayClimb <= height
+        int durationDay = top.divide(bottom, RoundingMode.CEILING).intValue();
+        System.out.println(durationDay+1);//　durationDayは最終日の上りのみ1日を含めない
+    }
 
     // パターンをより単純化できるためループ文削除
     // ①昼の上りだけで完結（1日）
