@@ -2,6 +2,7 @@ package basicMathematics.snail2869;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
 }
 
 class Solution {
+
     // パターンをより単純化できるためループ文削除
     // ①昼の上りだけで完結（1日）
     // ②昼の上り、夜の下りを繰り返し、昼の上りで完結（2日以上）
@@ -40,9 +42,15 @@ class Solution {
 
             // ** int finalDay = height % dayClimb;
 
-            int bottom = dayClimb-nightDescend; // nightDescend < dayClimb
-            int top = height-dayClimb; // dayClimb <= height
-            int durationDay = top/bottom;
+            // 재차 정리해보기
+            // (dayClimb-nightDescend)*(일수) = 마지막날뺀 이동거리
+            // 전체이동거리 = height
+            // 마지막날뺀이동거리+낮이동거리 >= 전체이동거리
+            // (dayClimb-nightDescend)*일수 + dayClimb >= height
+            // 일수 >= height-dayClimb / dayClimb-nightDescend.
+            BigDecimal bottom = new BigDecimal(dayClimb-nightDescend); // nightDescend < dayClimb
+            BigDecimal top = new BigDecimal(height-dayClimb); // dayClimb <= height
+            int durationDay = top.divide(bottom, RoundingMode.CEILING).intValue();
             System.out.println(durationDay+1);//　②durationDayは最終日の上りのみ1日を含めない
         }
     }
