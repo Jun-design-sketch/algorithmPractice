@@ -94,7 +94,7 @@ public class Main {
 //        }
 
         // だからBufferに文字を溜めておいて、一度に文字列のように流す。馴染みのあるこれが出てくる
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // Byte Type = InputStream
         // Char Type = InputStreamReader
         // Char Type Serialization = BufferedReader
@@ -102,5 +102,53 @@ public class Main {
         // *Serialization直列化：オブジェクトの状態を特定形式に変換し保存・転送できるようにする。
         // 直列化：オブジェクトをbyteStreamに変換し保存・転送
         // 逆直列化：byteStreamをオブジェクトに変換し元の状態に戻す
+
+        BufferReadTest brt = new BufferReadTest();
+//        brt.test1();
+//        brt.test2();
+//        brt.test3();
+        brt.test4();
+    }
+}
+
+class BufferReadTest {
+    protected void test1() throws IOException {
+        // read int value with while
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int read;
+        while((read = br.read()) >= 0){ // br.read() when eof == return -1
+            char ch = (char)read;
+            System.out.println(ch);
+        }
+        // intellij: cmd+d(eof)
+        br.close();
+    }
+
+    protected void test2() throws IOException {
+        // br.read() EOF is -1
+        BufferedReader br = new BufferedReader((new InputStreamReader(System.in)));
+        int read;
+        if(br.read() == -1){ // cmd+d
+            System.out.println("br.read EOF == return -1");
+        };
+    }
+
+    protected void test3() throws IOException {
+        // readLine with while
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String read;
+        while((read = br.readLine()) != null){
+            System.out.println(read);
+        }
+        br.close();
+    }
+
+    protected void test4() throws IOException {
+        // readLine EOF test
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        if(br.readLine()== null){
+            System.out.println("br.readLine EOF == return null");
+        }
+        br.close();
     }
 }
