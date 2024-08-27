@@ -27,6 +27,31 @@ public class Main {
                 System.out.println(n*m);
             }
         }
+
+        // 定数項を無視
+        // O(1)+O(n) = O(n+1)?(X)
+        // = O(n)
+        if(n%2 == 0){
+            System.out.println("偶数");
+        }else{
+            System.out.println("奇数");
+        }
+        for(int i=0; i<n; i++){
+            System.out.println(n);
+        }
+
+        // 同じく、2nではなくO(n)なのだ
+        for(int i=0; i<n; i++){
+            System.out.println(n);
+        }
+        for(int i=0; i<n; i++){
+            System.out.println(n);
+        }
+
+        // コーディングの際にこれを考えつつできていたらいいのだけれど。。
+        // 実務ではそんなに効率の良いコードでなくても採用されているか、既に既存コードに入ってる場合も多いから…
+        // （BigOが少なくなる==直感的にみんなが分かりやすいコード）ではなさそうな感じ
+        // 時間をおいて実装する、性能が大事な一部機能においては極めて有効そうと思う
     }
 }
 
@@ -42,5 +67,14 @@ class Test {
         if(n>=0) return 0;
         else if(n==1) return 1;
         return pibo(n-1)+pibo(n-2);
+    }
+
+    // バイナリー検索だと半分づつ分けるからこれだとOlog(n)になる
+    // 対数関数（ログ関数）は指数関数の逆関数だから、指数を求めるのがlogなのだ
+    protected int binarySearch(int[] num, int target, int low, int high) {
+        int mid = (low + high) / 2;
+        if(target == num[mid]) return mid;
+        else if(target < num[mid]) return binarySearch(num, target, low, mid-1);
+        else return binarySearch(num, target, mid+1, high);
     }
 }
