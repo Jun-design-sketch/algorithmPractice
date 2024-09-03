@@ -27,11 +27,19 @@ class Test {
     // 分割制服戦略を使用しており、多くのライブラリ・システムでデフォルト整列アルゴリズムとなっている
     // binarySearchの発想で、配列をnより少ないもの、大きいものに分ける
     // 分けた配列たちに対してrecursiveに再度nを決めbinarySearchを行う。
-    protected Object[] sol2(int[] arr){
-        int[] array1 = new int[3];
-        int[] array2 = new int[3];
-        return new Object[]{array1, array2};
+    protected void sol2(int[] a){
+        // Quick pivot
+        // pivotを１つ選択する。
+        // pivotを基準として両方でpivotより大きい値（左）、少ない値（右）を探す。
+        // 値の整列がしたいのだから、これら二つを交換する
+        // 左で探索する位置、右で探索する位置のすれ違いがない限度までpivotを固定しこれを繰り返す。
+        // すれ違った時点を基準とし、２つの部分リストに分ける。
+        // これらの部分リストの長さが１になるまでpivot選定〜交換〜すれ違い発生までを繰り返す。
+        // 隣接した部分リスト同士で合体する。
     }
+
+
+    // 内蔵関数
     protected void sol1() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
