@@ -1,4 +1,4 @@
-package sorting.numSort2751;
+package sorting.basicConcept;
 
 import java.io.BufferedReader;
 import java.io.IOException;
