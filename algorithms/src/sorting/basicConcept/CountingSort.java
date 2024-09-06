@@ -65,4 +65,8 @@ public class CountingSort {
         sb.deleteCharAt(sb.lastIndexOf(" "));
         System.out.println(sb);
     }
+    // QuickSortより直感的な方法であったが、
+    // {1,2^31}が入っていたらこれら２つを整列するのに2^31+1の配列を作らねばならないのがネック
+    // 最小値と最大値が固定されている限られた条件では使える。
+    // お金持ちのカード利用履歴とか整列しようとすると効率悪そう
 }
