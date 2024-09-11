@@ -14,21 +14,32 @@ public class Main {
         for(int i=0; i<n; i++){
             arr[i] = br.readLine();
         }
+//        Arrays.sort(arr, new Comparator<String>() {
+//            @Override
+//            public int compare(String o1, String o2) {
+//                if(o1.length() != o2.length()){
+//                    return o1.length()-o2.length();
+//                }else{
+//                    char[] o1Ch = o1.toCharArray();
+//                    char[] o2Ch = o2.toCharArray();
+//                    for(int i=0; i<o1Ch.length; i++){
+//                        if(o1Ch[i]!=o2Ch[i]){
+//                            return o1Ch[i]-o2Ch[i];
+//                        }
+//                    }
+//                }
+//                return 0;
+//            }
+//        });
+
+        // 正解ではあったけど、こう解いても良かった。（こっちの方がメモリは少なく使うし、簡潔..）
         Arrays.sort(arr, new Comparator<String>() {
-            @Override
             public int compare(String o1, String o2) {
-                if(o1.length() != o2.length()){
-                    return o1.length()-o2.length();
+                if(o1.length() == o2.length()){
+                    return o1.compareTo(o2); // 長さが同じであれば、compareToしてしまえ
                 }else{
-                    char[] o1Ch = o1.toCharArray();
-                    char[] o2Ch = o2.toCharArray();
-                    for(int i=0; i<o1Ch.length; i++){
-                        if(o1Ch[i]!=o2Ch[i]){
-                            return o1Ch[i]-o2Ch[i];
-                        }
-                    }
+                    return o1.length()-o2.length(); // 同じでなければ、長さ同士引き算すれば良い
                 }
-                return 0;
             }
         });
 
