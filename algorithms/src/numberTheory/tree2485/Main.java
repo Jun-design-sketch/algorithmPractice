@@ -5,9 +5,14 @@ import java.util.Arrays;
 import java.util.TreeSet;
 
 public class Main {
+//    5
+//    1
+//    4
+//    11
+//    19
+//    28
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         int[] arr = new int[n];
         int[] interval = new int[n-1];
@@ -25,7 +30,6 @@ public class Main {
         Main main = new Main();
         int allGcd = main.getGcd(interval);
         // あるべき間隔（最大公約数）が分かったので
-        int count = 0;
         int first = arr[0];
         int last = arr[arr.length-1];
         int result = ((last - first) / allGcd) + 1;
@@ -35,6 +39,8 @@ public class Main {
     }
 
     private int getGcd(int[] arr){
+        if(arr.length==1) return arr[0];
+
         TreeSet<Integer> gcdSet = new TreeSet<>();
         for(int j= arr.length-1; j>0; j--){
             int a = arr[j];
@@ -47,10 +53,12 @@ public class Main {
             int gcd = a;
             gcdSet.add(gcd);
         }
-        if(gcdSet.size()!=1){
-            arr = gcdSet.stream().mapToInt(Integer::intValue).toArray();
-            getGcd(arr);
-        }
-        return arr[0];
+        int[] remake = gcdSet.stream().mapToInt(Integer::intValue).toArray();
+        // 再帰的呼び出しでは前回分の呼び出しではなく、しっかり今回分を返すように気をつけること。。
+        // if文で囲って再帰的呼び出しをしたところで、その後にreturnがあるとreturnはされてしまうのだった
+        // 42行なしでこうしてたから。。
+        // if(arr.length!=1) getGcd(remake);
+        // return remake[0];
+        return getGcd(remake);
     }
 }
