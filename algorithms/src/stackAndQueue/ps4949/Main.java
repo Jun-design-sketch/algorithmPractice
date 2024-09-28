@@ -16,7 +16,11 @@ public class Main {
         boolean isException = false;
         String line;
 
-        while((line = br.readLine()) != null){
+        while(true){
+            // 終了条件"."
+            line = br.readLine();
+            if(line.equals(".")) break;
+
             try {
                 for (int i = 0; i < line.length(); i++) {
                     // charAtすれば、1文字単位の確認でsplit不要
