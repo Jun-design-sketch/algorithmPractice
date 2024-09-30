@@ -1,8 +1,8 @@
 package stackAndQueue.ballon2346;
 
 import java.io.*;
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,35 +10,37 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-
-        Deque<Integer> deque = new LinkedList<>();
         int n = Integer.parseInt(br.readLine());
 
-        // 最初dequeの状態
+        Deque<Integer> deque = new ArrayDeque<>();
+        Deque<Integer> dequeNum = new ArrayDeque<>();
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        for(int i=0; i<n; i++){
+        for(int i=1; i<=n; i++){
             deque.addLast(Integer.parseInt(st.nextToken()));
+            dequeNum.addLast(i);
         }
+        // paperValは紙の値、balloonPosは風船の位置
+        int paperVal = deque.pollFirst();
+        int balloonPos = dequeNum.pollFirst();
+        sb.append(balloonPos+" ");
 
-        // 1回目は最初の風船を確認する
-        int position = 1;
-        sb.append(position+" ");
-        // 2回目から
-        int paperNum = deque.pollFirst();
         for(int i=0; i<n-1; i++){
-            position += paperNum;
-            sb.append(position+" ");
-            if(paperNum>0){
-                for(int j=0; j<paperNum-1; j++){
+            if(paperVal>0){
+                for(int j=1; j<=paperVal-1; j++){
                     deque.addLast(deque.pollFirst());
+                    dequeNum.addLast(dequeNum.pollFirst());
                 }
-                paperNum = deque.pollFirst();
+                paperVal = deque.pollFirst();
+                balloonPos = dequeNum.pollFirst();
             }else {
-                for (int j = 0; j < paperNum-1; j++) {
+                for (int j=-1; j>=paperVal+1; j--) {
                     deque.addFirst(deque.pollLast());
+                    dequeNum.addFirst(dequeNum.pollLast());
                 }
-                paperNum = deque.pollLast();
+                paperVal = deque.pollLast();
+                balloonPos = dequeNum.pollLast();
             }
+            sb.append(balloonPos+" ");
         }
         sb.setLength(sb.length()-1);
         bw.write(String.valueOf(sb));
