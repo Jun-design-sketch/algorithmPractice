@@ -33,7 +33,7 @@ public class Main {
         bw.flush();
         bw.close();
     }
-    
+
     public static boolean isPrime(long x) {
         for(long j=2; j<=Math.sqrt(x); j++){
             if(x % j == 0) return false;
