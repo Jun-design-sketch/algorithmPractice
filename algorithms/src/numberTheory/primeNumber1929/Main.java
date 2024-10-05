@@ -5,7 +5,33 @@ import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int min = Integer.parseInt(st.nextToken());
+        int max = Integer.parseInt(st.nextToken());
+        br.close();
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=min; i<=max; i++) {
+            if(isPrime(i)) sb.append(i+"\n");
+        }
+        sb.setLength(sb.length()-1);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    public static boolean isPrime(int target) {
+        if(target <= 1) return false;
+        else if(target == 2) return true;
+
+        int limit = (int) Math.sqrt(target);
+        for(int i=2; i<=limit; i++){
+            if(target % i == 0) return false;
+        }
+        return true;
     }
 }
 class Solution {
