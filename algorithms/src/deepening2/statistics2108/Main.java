@@ -4,14 +4,13 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    // TODO: Case3, Case4
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
         int sum = 0;
-
+        // TODO: 例題は全て通るけどどっかにバグがある。。
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for(int i=0; i<n; i++){
             int element = Integer.parseInt(br.readLine());
@@ -24,11 +23,23 @@ public class Main {
         }
         br.close();
 
-        int average = sum / map.size();
+        double avg = (sum * 10 / n) / 10.0;
+        int average = (int) Math.round(avg);
+
+
+        int middleVal = 0;
+        int forMiddle = n / 2;
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            forMiddle -= entry.getValue();
+            if(forMiddle < 0){
+                middleVal = entry.getKey();
+                break;
+            }
+        }
 
         int mode = 0;
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
+        list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
         if(list.size() > 1){
             if(list.get(0).getValue() == list.get(1).getValue()) mode = list.get(1).getKey();
             else mode = list.get(0).getKey();
@@ -40,14 +51,6 @@ public class Main {
         int maxVal = map.lastKey();
         int minVal = map.firstKey();
         range = maxVal - minVal;
-
-        int middleVal = 0;
-        int forMiddle = map.size() / 2;
-        for(int i=0; i<forMiddle; i++){
-            map.pollFirstEntry();
-            map.pollLastEntry();
-        }
-        middleVal = map.pollFirstEntry().getKey();
 
         StringBuilder sb = new StringBuilder();
         sb.append(average + "\n");
