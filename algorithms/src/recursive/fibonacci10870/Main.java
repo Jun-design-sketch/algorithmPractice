@@ -10,13 +10,21 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         br.close();
 
-        bw.write("");
+        int answer = getLastFibonacci(n, 0, 0, 1);
+
+        bw.write(String.valueOf(answer));
         bw.flush();
         bw.close();
     }
 
-    private static int getLastFibonacci(int count) {
+    private static int getLastFibonacci(int count, int beforeNum, int curNum, int nextNum) {
+        if(count == 0) return 0;
+        beforeNum = curNum;
+        curNum = nextNum;
+        nextNum = beforeNum + curNum;
+        count--;
 
-        return 0;
+        if(count > 0) return getLastFibonacci(count, beforeNum, curNum, nextNum);
+        else return curNum;
     }
 }
