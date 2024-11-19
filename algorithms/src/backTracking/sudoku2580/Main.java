@@ -71,9 +71,12 @@ public class Main {
                 if(possibility(row,col,i)){
                     arr[row][col] = i;
                     sudokuTT(row,col+1);
+                    // 正しい値が入って次へずっと進んでいるのであれば、ここの外へ出ることはない
+                    // ずっと埋めて行ってSystem.exit(0)するから
                 }
             }
-            // 間違った値で進んだ場合、空欄に戻しreturnする　ここが難しい…
+            // つまりここに来た時は入れたarr[row][col]の値が間違っていた時。。
+            // 間違った値で進んだ場合、空欄に戻しreturnする　ここが難しい。。
             arr[row][col] = 0;
             return;
         }
