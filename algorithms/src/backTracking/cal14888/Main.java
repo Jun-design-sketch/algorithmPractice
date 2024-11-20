@@ -32,6 +32,18 @@ public class Main {
         // 初期値の割り当て
         MAX_VALUE = Integer.MIN_VALUE;
         MIN_VALUE = Integer.MAX_VALUE;
+        curVal = arr[0];
+        int limit = 0;
+        for(int el : operators) limit += el;
+
+        eachStep(0, limit);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(MAX_VALUE).append("\n");
+        sb.append(MIN_VALUE);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     /*
@@ -40,24 +52,40 @@ public class Main {
     ** １つの枝が最後まで進んだら、２段階前に戻り別のケースを確認すればいい
     ** 3段階前なら？
      */
-    public static void eachStep(int depth) {
+    public static void eachStep(int depth, int limit) {
         // 最後まで計算していたら
-        if(depth == arr.length){
+        if(depth == limit){
             if(MAX_VALUE < curVal) MAX_VALUE = curVal;
             if(MIN_VALUE > curVal) MIN_VALUE = curVal;
             return;
         }
+        // TODO: 以前段階に戻らせ、他の選択肢を選ばせる
         // どの演算子を入れる？
-        if(operators[0] > 0){
-            curVal = arr[0] + arr[1];
-            eachStep(depth+1);
-        }else{}
-
-        switch(){
-
+        for(int i=1; i<arr.length; i++){
+            if(operators[0] > 0) {
+                curVal += arr[i];
+                operators[0]--;
+                eachStep(depth+1, limit);
+            }
+            if(operators[1] > 0) {
+                curVal -= arr[i];
+                operators[1]--;
+                eachStep(depth+1, limit);
+            }
+            if(operators[2] > 0) {
+                curVal *= arr[i];
+                operators[2]--;
+                eachStep(depth+1, limit);
+            }
+            if(operators[3] > 0) {
+                if(curVal < 0) {
+                    curVal = curVal * (-1) / arr[i];
+                }else {
+                    curVal = curVal / arr[i];
+                }
+                operators[3]--;
+                eachStep(depth+1, limit);
+            }
         }
-
-        // 入れて計算したら、元に戻るよ
-        eachStep(depth+1);
     }
 }
