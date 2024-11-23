@@ -84,7 +84,7 @@ public class Main {
             if(curVal < 0) {
                 curVal *= (-1);
                 curVal /= arr[i];
-                if(curVal < 0) curVal *= (-1);
+                curVal *= (-1);
             }else {
                 curVal /= arr[i];
             }
