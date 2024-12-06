@@ -13,17 +13,20 @@ public class Main {
         String line;
         StringBuilder sb = new StringBuilder();
         dp = new int[21][21][21];
-        while((line=br.readLine()) != null) {
-            StringTokenizer st = new StringTokenizer(line, " ");
+//        while((line=br.readLine()) != null) {
+        while(true){
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
+            if(a==b && b==c && c==-1) break;
             sb.append("w(").append(a).append(", ");
             sb.append(b).append(", ");
             sb.append(c).append(") = ");
             int d = doSomething(a, b, c);
             sb.append(d).append("\n");
         }
+        sb.setLength(sb.length()-1);
         bw.write(sb.toString());
         bw.flush();
         bw.close();
@@ -35,14 +38,15 @@ public class Main {
     public static int doSomething(int a, int b, int c) {
         // 以前の結果をキープして効率さを得る
         if(inRange(a, b, c) && dp[a][b][c] != 0) return dp[a][b][c];
-        if(a == 0 || b == 0 || c == 0) return 1;
+        if(a <= 0 || b <= 0 || c <= 0) return 1;
         if(a > 20 || b > 20 || c > 20) return dp[20][20][20] = doSomething(20, 20, 20);
         if(a < b && b < c){
-            return doSomething(a,b,c-1)+doSomething(a,b-1,c-1)-doSomething(a,b-1,c);
-        }else{
-            return  doSomething(a-1,b,c) + doSomething(a-1,b-1,c) +
-                    doSomething(a-1,b,c-1) - doSomething(a-1,b-1,c-1);
+            return dp[a][b][c] = doSomething(a,b,c-1)+doSomething(a,b-1,c-1)-doSomething(a,b-1,c);
         }
+
+        return  dp[a][b][c] =
+                doSomething(a-1,b,c) + doSomething(a-1,b-1,c) +
+                doSomething(a-1,b,c-1) - doSomething(a-1,b-1,c-1);
     }
 
     public static boolean inRange(int a, int b, int c) {
