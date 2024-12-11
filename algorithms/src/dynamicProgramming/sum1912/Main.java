@@ -18,29 +18,21 @@ public class Main {
         }
         br.close();
 
-
-        doSomething();
-
         bw.write("test");
         bw.flush();
         bw.close();
     }
 
-    /*
-    * 1個1個の元素から2,3,4... ~ n-1,n.. 6個元素があるとしたら
-    *
-    * |     0
-    * |    0 0
-    * |   0 0 0
-    * |  0 0 0 0
-    * | 0 0 0 0 0
-    * |1 1 1 1 1 1 => ここは最初入力済み: arr[n][1~n];
-    * --------------->
-    * sums[n-1][1] = arr[n][1] + arr[n][2] ... sums[n-1][n-1] = arr[n][n-1] + arr[n][n]
-    *
-    * 連続する数字の合計を求める漸化式は？
-    */
-    public static void doSomething() {
-
-    }
+// Top-down
+//    static int recur(int N) {
+//        if(dp[N] == null) {
+//            dp[N] = Math.max(recur(N - 1) + arr[N], arr[N]);
+//            max = Math.max(dp[N], max);
+//        }
+//        return dp[N];
+//    }
+// Down-top
+//    for (int i = 1; i < N; i++) {
+//        dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
+//    }
 }
