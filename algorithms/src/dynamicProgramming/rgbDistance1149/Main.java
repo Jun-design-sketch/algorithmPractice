@@ -36,6 +36,8 @@ public class Main {
     }
 
     public static void doSomething() {
+        // 以前と以降の家とは違う色を塗る時、費用の全量が最小限になる方法。。
+        // DPに入ってからあまり捗らなず
 
     }
 }
