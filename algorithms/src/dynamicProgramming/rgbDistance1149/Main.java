@@ -13,51 +13,70 @@ public class Main {
     // ②N番家の色はN-1番家の色と同じでないこと。
     // ③i(2<=i<=N-1)番家の色はi-1, i+1番家の色と同じでないこと。
     public static int n;
-    public static int[][] arr;
-    public static int[] ans;
+
+    /**
+     * Ｒ，Ｇ，Ｂに塗る時にかかる費用を２次元配列で保持する。
+     * costList[0][0] = 1番目の家を赤に塗る時にかかる費用
+     * costList[0][1] = 1番目の家を緑に塗る時にかかる費用
+     * ...
+     */
+    public static int[][] costsList;
+    public static int[][] dp;
+    public static int ans;
+    public static final int red = 0;
+    public static final int green = 1;
+    public static final int blue = 2;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
+        // 家の数
         n = Integer.parseInt(br.readLine());
-        arr = new int[3][n+1];
+        // 家を塗るのに必要な費用
+        costsList = new int[n][3];
 
-        for(int i=1; i<n+1; i++){
+        // 費用パラメータの取得
+        for(int i=0; i<n; i++){
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            for(int j=1; j<4; j++){
-                arr[j][i] = Integer.parseInt(st.nextToken());
+            for(int j=0; j<3; j++){
+                costsList[i][j] = Integer.parseInt(st.nextToken());
             }
         }
         br.close();
 
-        doSomething();
+        // 家を塗る各ケース毎の累積合を格納する変数
+        dp = new int[n][3];
+        // １番目の家を塗る費用は、費用そのまま
+        dp[0][red] = costsList[0][red];
+        dp[0][green] = costsList[0][green];
+        dp[0][blue] = costsList[0][blue];
+        // ２番目〜N番目の家を塗る費用を求める
+        // →累積合の最小値を求める
+        int answer = Math.min(
+                paintCost(n-1, red),
+                Math.min(paintCost(n-1, green), paintCost(n-1, blue))
+        );
 
-        bw.write("working...");
+        bw.write(""+answer);
         bw.flush();
         bw.close();
     }
 
-    public static void doSomething() {
-        // 以前と以降の家とは違う色を塗る時、費用の全量が最小限になる方法。。
-        // DPに入ってからあまり捗らなず
-        ans = new int[n];
-        boolean[] bol = new boolean[3];
-
-        for(int i=1; i<n+1; i++) {
-            int a = arr[1][i];
-            int b = arr[2][i];
-            int c = arr[3][i];
-//            int min = Math.min(a, Math.min(b, c));
-//            if (i % 3 == 1){
-//
-//                if(min == a) { ans[i] = arr[1][i];
-//                else if(min == b) { ans[i] = arr[2][i]; }
-//                else { ans[i] = arr[3][i]; }
-//            }
-            // TODO: 最初R,G,Bのどれかを選択することによって以降の最初値が決まるので場合分けの漸化式
-            // ans[1][0] = arr[1][0]であれば
-            // ans[2][0] += min(arr[1][1], arr[1][2]),
-            // ...
+    // 例えば３番目の家を塗る時を計算するなら
+    // ２番目の家を塗る時の値がdp[1][color]に格納ずみなので
+    // 以前の演算結果を流用できる。。
+    public static int paintCost(int n, int color) {
+        // 探索していない配列要素なら、未計算なので対象
+        if(dp[n][color] == 0) {
+            if(color == red){
+                // 再帰的呼び出し：ピラミッドの最上階から１階ずつ下を呼び出す。
+                dp[n][red] = Math.min(paintCost(n-1, green), paintCost(n-1, blue)) + costsList[n][red];
+            }else if(color == green){
+                dp[n][green] = Math.min(paintCost(n-1, red), paintCost(n-1,blue)) + costsList[n][green];
+            }else{
+                dp[n][blue] = Math.min(paintCost(n-1, red), paintCost(n-1, green)) + costsList[n][blue];
+            }
         }
+        return dp[n][color];
     }
 }
