@@ -13,7 +13,6 @@ public class Main {
         Instant plusNine = UTC.plus(nineHour);
         String today = plusNine.toString().substring(0, 10);
         System.out.println(today);
-
         // ZoneIdで地域指定、ZoneDateTimeを作る
         System.out.println("Instant: ZoneId");
         Instant nowUtc = Instant.now();
