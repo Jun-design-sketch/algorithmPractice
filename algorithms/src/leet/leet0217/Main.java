@@ -41,6 +41,7 @@ public class Main {
     * assuming the hash function disperses the elements properly among the buckets.
     * 線形的な性能、ただしバケットにいい感じに割り振られていれば
      */
+    // 0217はindex不要の、「前見たことあるか」で事足りるためHashSetの方がより望ましい。
     public boolean containsDuplicateSet(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
         for(int i=0; i<nums.length; i++) {
