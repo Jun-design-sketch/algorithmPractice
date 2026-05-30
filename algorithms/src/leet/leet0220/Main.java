@@ -31,6 +31,9 @@ public class Main {
     }
     // HashMapで解こうとして大変な目に会った
     // 要件に合致した資料構造であればあるほど簡単に解ける
+
+    // indexDiff分の要素の大小関係：整列
+    // nums[i]よりvalueDiff分の大小関係にあるものを洗い出す：ceiling()
     public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
         TreeSet<Long> set = new TreeSet<>();
 
