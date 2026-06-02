@@ -29,6 +29,10 @@ public class Main {
         return "";
     }
 
+    // なぜ文字列長さのGCDを求めると十分なのか？
+    // 1.とある文字列の中で繰り返されるパターンがある　＝　そのパターンの長さは、str.length()の約数である
+    // 2.二つの文字列の中で共通されるパターンがある　＝　二つの文字列のlength()の公約数である
+    // 3 最大公約数は、それより小さい約数で割り切られる
     public int gcd(int a, int b) {
         if (b == 0) return a;
         return gcd(b, a % b);
@@ -36,6 +40,7 @@ public class Main {
 
     public boolean canBuild(String str, String candidate) {
         for(int i = 0; i < str.length(); i++) {
+            // i % (定数) にし、0〜(定数-1)をループ＆＆i番目との比較が成立する
             if(str.charAt(i) != candidate.charAt(i % candidate.length())) return false;
         }
         return true;
