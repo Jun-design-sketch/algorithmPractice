@@ -43,21 +43,26 @@ public class Main {
     }
 
     public boolean canPlaceFlowersMK2(int[] flowerbed, int n) {
-        if(n == 0) return true;
-        if(flowerbed.length == 1) return (flowerbed[0] == 0 && n == 1);
+        // エッジケースのため追加していたコードが不要になったので削除
 
+        // 時間複雑度：O(flowerbed.length)
+        // １回配列の長さ分を巡回
+        // 空間複雑度：O(1)：与えられる配列がいかに大きくなるも、変数の数は増えない
+        // inputのflowerbed[]が増えるけど、外部からの入力は含まない
         for(int i = 0; i < flowerbed.length; i++) {
-            boolean zero = i > 0 ? flowerbed[i-1] == 0 : true;
-            boolean first = flowerbed[i] == 0;
-            boolean second = i < flowerbed.length - 1 ? flowerbed[i+1] == 0 : true;
+            // 変数名をより明確にする
+            boolean leftEmpty = i > 0 ? flowerbed[i-1] == 0 : true;
+            boolean currentEmpty = flowerbed[i] == 0;
+            boolean rightEmpty = i < flowerbed.length - 1 ? flowerbed[i+1] == 0 : true;
 
-            if(zero && first && second) {
+            if(leftEmpty && currentEmpty && rightEmpty) {
                 flowerbed[i] = 1;
                 n--;
             }
+            // 好みによるが、すぐ[return true]しても良い
             if(n == 0) break;
         }
-
+        // なぜならそうすると、ここで明確に[return false]できるから
         return n == 0;
     }
 }
