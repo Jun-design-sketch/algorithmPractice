@@ -1,5 +1,7 @@
 package leet.leet0345;
 
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
@@ -8,20 +10,28 @@ public class Main {
 
         String str2 = "leetcode";
         System.out.println(main.reverseVowels(str2)); // "leotcede"
-
-        System.out.println(Integer.valueOf("A".charAt(0)));
-        System.out.println(Integer.valueOf("E".charAt(0)));
-        System.out.println(Integer.valueOf("I".charAt(0)));
-        System.out.println(Integer.valueOf("O".charAt(0)));
-        System.out.println(Integer.valueOf("U".charAt(0)));
     }
 
     // 母音だけ洗い出して文字列内で位置をひっくり返す
     public String reverseVowels(String s) {
-        // 母音のindexを保存（順番を保持）
-        // 母音はascii値比較でOK
-        //  大文字小文字で１０個で面倒
-        //  一番楽で軽い比較
-        return "";
+        Set<Integer> vowels = new HashSet<>(Arrays.asList(65, 69, 73, 79, 85, 97, 101, 105, 111, 117));
+        Deque<Character> stack = new ArrayDeque<>();
+        int[] indexes = new int[s.length()];
+
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if(vowels.contains((int) ch)) {
+                indexes[i] = 1;
+                stack.push(ch);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < s.length(); i++) {
+            if(indexes[i] != 1) sb.append(s.charAt(i));
+            else sb.append(stack.pop());
+        }
+
+        return sb.toString();
     }
 }
