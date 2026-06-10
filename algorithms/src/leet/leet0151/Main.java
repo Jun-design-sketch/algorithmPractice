@@ -14,6 +14,14 @@ public class Main {
     }
 
     public String reverseWords(String s) {
+        String[] strArr = s.split(" ");
+        StringBuilder sb = new StringBuilder();
 
+        for(int i = strArr.length - 1; i >= 0; i--) {
+            if(!strArr[i].equals("")) sb.append(strArr[i]).append(" ");
+        }
+        sb.deleteCharAt(sb.length()-1);
+
+        return sb.toString();
     }
 }
