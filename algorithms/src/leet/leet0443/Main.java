@@ -41,4 +41,36 @@ public class Main {
         return sb.length();
     }
 
+    // sbを用いるとcharsの編集でグチャになる。charsを新たに作るのはNG
+    // sbを使わず、charsを編集する方向に進む
+    // sbに書き込んだものをcharsに反映するときに面倒なことは書き込む位置
+    // 書き込む位置と読み取りの位置は、必ずしも等しくはない：ここで詰んだ
+
+    // ポインターを２つ使用する
+    // 読み取るポインターは、常に書き込むポインターと同じかより先である
+    public int compressMK2(char[] chars) {
+        int write = 0;
+        int read = 0;
+
+        while (read < chars.length) {
+            char current = chars[read];
+            int count = 0;
+            while (read < chars.length && chars[read] == current) {
+                read++;
+                count++;
+            }
+
+            chars[write] = current;
+            write++;
+
+            if (count > 1) {
+                String countStr = String.valueOf(count);
+                for (int i = 0; i < countStr.length(); i++) {
+                    chars[write] = countStr.charAt(i);
+                    write++;
+                }
+            }
+        }
+        return write;
+    }
 }
