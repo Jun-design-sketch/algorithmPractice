@@ -5,12 +5,15 @@ public class Main {
         Main main = new Main();
         char[] ch1 = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
         System.out.println(main.compress(ch1)); // 6
+        System.out.println(ch1);
 
         char[] ch2 = {'a'};
         System.out.println(main.compress(ch2)); // 1
+        System.out.println(ch2);
 
         char[] ch3 = {'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'};
         System.out.println(main.compress(ch3)); // 4
+        System.out.println(ch3);
     }
 
     // 例は英語小文字だけど、chars[i]は大文字も数字も記号も入れる
@@ -23,18 +26,19 @@ public class Main {
         char before = chars[0];
 
         for(int i=1; i<chars.length; i++) {
-            if(chars[i-1] == before){
+            if(before == chars[i]){
                 count++;
             } else {
                 if(count > 1) sb.append(count);
-
                 count = 1;
                 sb.append(chars[i]);
                 before = chars[i];
             }
         }
-        if(count > 1) sb.append(count);
 
+        if(count > 1) sb.append(count);
+        System.out.println(sb);
         return sb.length();
     }
+
 }
