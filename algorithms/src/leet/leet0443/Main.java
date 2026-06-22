@@ -16,15 +16,25 @@ public class Main {
     // 例は英語小文字だけど、chars[i]は大文字も数字も記号も入れる
     // 1 <= chars.length <= 2000
     public int compress(char[] chars) {
-        char first = chars[0];
-        char second = '0';
+        StringBuilder sb = new StringBuilder();
+        sb.append(chars[0]);
+
+        int count = 1;
+        char before = chars[0];
 
         for(int i=1; i<chars.length; i++) {
+            if(chars[i-1] == before){
+                count++;
+            } else {
+                if(count > 1) sb.append(count);
 
+                count = 1;
+                sb.append(chars[i]);
+                before = chars[i];
+            }
         }
+        if(count > 1) sb.append(count);
 
-        if(second == '0') return 1;
-
-        return 0;
+        return sb.length();
     }
 }
